@@ -10,7 +10,7 @@ jobs:
       - run:
           name: Import external alertrules
           command: |
-            scripts/alertrules/import.sh
+            scripts/import.sh
 
   testPrometheusRules:
     docker:
@@ -18,13 +18,17 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Import external alertrules
-          command: |
-            scripts/alertrules/import.sh
-      - run:
           command: |
             scripts/test_prometheus_rules.sh
 
+  publishChart:
+    docker:
+      - image: web3f/ci-commons:v2.4.0
+    steps:
+      - checkout
+      - run:
+          command: |
+            /scripts/publish-chart.sh          
 
 workflows:
   version: 2
