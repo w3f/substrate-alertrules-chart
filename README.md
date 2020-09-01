@@ -1,3 +1,1 @@
 # substrate-alertrules-chart
-
-test
