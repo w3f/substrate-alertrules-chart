@@ -1,0 +1,5 @@
+deploymentName: testnet-0
+specGroupName: polkadot.rules
+labels:
+  app: polkadot
+monitoring: false
