@@ -4,4 +4,4 @@ kind: PrometheusRule
 metadata:
   name: {{ .Release.Name }}-alertrules-substrate
   labels:
-{{ toYaml .Values.alertRulesLabels | indent 4 }}
+{{ toYaml .Values.labels | indent 4 }}
