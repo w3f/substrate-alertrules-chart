@@ -2,6 +2,6 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: {{ .Release.Name }}-alertrules-substrate
+  name: {{ .Release.Name }}
   labels:
 {{ toYaml .Values.labels | indent 4 }}
