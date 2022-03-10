@@ -54,6 +54,7 @@ workflows:
             tags:
               only: /.*/
       - publishChart:
+          context: github-bot
           requires:
             - testPrometheusRules
           filters:
