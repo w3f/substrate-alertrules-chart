@@ -2,6 +2,16 @@ version: 2
 
 jobs:
 
+  importPrometheusRules:
+    docker:
+      - image: web3f/ci-commons:v2.4.0
+    steps:
+      - checkout
+      - run:
+          name: Import external alertrules
+          command: |
+            scripts/alertrules/import.sh
+
   testPrometheusRules:
     docker:
       - image: web3f/ci-commons:v2.4.0
@@ -10,7 +20,7 @@ jobs:
       - run:
           name: Import external alertrules
           command: |
-            scripts/import.sh
+            scripts/alertrules/import.sh
       - run:
           command: |
             scripts/test_prometheus_rules.sh
@@ -28,16 +38,22 @@ jobs:
           command: |
             /scripts/publish-chart.sh          
 
+
 workflows:
   version: 2
   test-deploy:
     jobs:    
+      - importPrometheusRules:
+          filters:
+            tags:
+              only: /.*/
       - testPrometheusRules:
+          requires:
+            - importPrometheusRules
           filters:
             tags:
               only: /.*/
       - publishChart:
-          context: github-bot
           requires:
             - testPrometheusRules
           filters:
