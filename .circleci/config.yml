@@ -36,7 +36,7 @@ jobs:
             scripts/import.sh
       - run:
           command: |
-            /scripts/publish-chart.sh          
+            /scripts/publish-chart.sh
 
 
 workflows:
