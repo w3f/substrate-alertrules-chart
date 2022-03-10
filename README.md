@@ -2,4 +2,4 @@
 
 # substrate-alertrules-chart
 
-Helm chart for deploying PrometheusRule, retrieved from https://github.com/paritytech/substrate.git .
+Helm chart for deploying PrometheusRule, retrieved from https://github.com/paritytech/substrate.git 
