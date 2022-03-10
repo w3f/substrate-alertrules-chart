@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-SUBSTRATE_VER=v2.0.0-rc6
+SUBSTRATE_VER=monthly-2022-03
 PROJECT_ROOT=`git rev-parse --show-toplevel`
 TEST_FOLDER_PROMETHEUS="tests/prometheus"
 TEST_FOLDER="${TEST_FOLDER_PROMETHEUS}/substrate-alertrules"
