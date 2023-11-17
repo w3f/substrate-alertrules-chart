@@ -9,4 +9,4 @@ CHART_FOLDER="charts/substrate-alertrules/templates"
 RULE_FILE_NAME="alertrules.yaml"
 TEST_FILE_NAME="alertrules.yaml"
 SUBSTRATE_FOLDER="/tmp/substrate"
-SUBSTRATE_RULES_FOLDER=${SUBSTRATE_FOLDER}/.maintain/monitoring/alerting-rules
+SUBSTRATE_RULES_FOLDER=${SUBSTRATE_FOLDER}/scripts/ci/monitoring/alerting-rules
