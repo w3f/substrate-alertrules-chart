@@ -62,7 +62,7 @@ metadata:
           severity: critical
         annotations:
           message: "Block finalization on instance `{{`{{ $labels.instance }}`}}` is behind
-          block production by {{ $value }} for more than 8 minutes."
+          block production by `{{`{{ $value }}`}}` for more than 8 minutes."
 
       ##############################################################################
       # Transaction queue
