@@ -16,7 +16,7 @@ metadata:
 
       - alert: BlockProductionSlow
         annotations:
-          message: 'Best block on instance {{ $labels.instance }} increases by
+          message: 'Best block on instance `{{`{{ $labels.instance }}`}}` increases by
           less than 1 per minute for more than 3 minutes.'
         expr: increase(substrate_block_height{status="best"}[1m]) < 1
         for: 3m
@@ -24,7 +24,7 @@ metadata:
           severity: warning
       - alert: BlockProductionSlow
         annotations:
-          message: 'Best block on instance {{ $labels.instance }} increases by
+          message: 'Best block on instance `{{`{{ $labels.instance }}`}}` increases by
           less than 1 per minute for more than 10 minutes.'
         expr: increase(substrate_block_height{status="best"}[1m]) < 1
         for: 10m
@@ -41,7 +41,7 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'Finalized block on instance {{ $labels.instance }} increases by
+          message: 'Finalized block on instance `{{`{{ $labels.instance }}`}}` increases by
           less than 1 per minute for more than 3 minutes.'
       - alert: BlockFinalizationSlow
         expr: increase(substrate_block_height{status="finalized"}[1m]) < 1
@@ -49,7 +49,7 @@ metadata:
         labels:
           severity: critical
         annotations:
-          message: 'Finalized block on instance {{ $labels.instance }} increases by
+          message: 'Finalized block on instance `{{`{{ $labels.instance }}`}}` increases by
           less than 1 per minute for more than 10 minutes.'
       - alert: BlockFinalizationLaggingBehind
         # Under the assumption of an average block production of 6 seconds,
@@ -61,7 +61,7 @@ metadata:
         labels:
           severity: critical
         annotations:
-          message: "Block finalization on instance {{ $labels.instance }} is behind
+          message: "Block finalization on instance `{{`{{ $labels.instance }}`}}` is behind
           block production by {{ $value }} for more than 8 minutes."
 
       ##############################################################################
@@ -75,7 +75,7 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'The transaction pool size on node {{ $labels.instance }} has
+          message: 'The transaction pool size on node `{{`{{ $labels.instance }}`}}` has
           been monotonically increasing for more than 10 minutes.'
       - alert: TransactionQueueSizeIncreasing
         expr: 'increase(substrate_sub_txpool_validations_scheduled[5m]) -
@@ -84,7 +84,7 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'The transaction pool size on node {{ $labels.instance }} has
+          message: 'The transaction pool size on node `{{`{{ $labels.instance }}`}}` has
           been monotonically increasing for more than 30 minutes.'
       - alert: TransactionQueueSizeHigh
         expr: 'substrate_sub_txpool_validations_scheduled -
@@ -93,7 +93,7 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'The transaction pool size on node {{ $labels.instance }} has
+          message: 'The transaction pool size on node `{{`{{ $labels.instance }}`}}` has
           been above 10_000 for more than 5 minutes.'
 
       ##############################################################################
@@ -106,7 +106,7 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'The node {{ $labels.instance }} has less than 3 peers for more
+          message: 'The node `{{`{{ $labels.instance }}`}}` has less than 3 peers for more
           than 3 minutes'
       - alert: NumberOfPeersLow
         expr: substrate_sub_libp2p_peers_count < 3
@@ -114,14 +114,14 @@ metadata:
         labels:
           severity: critical
         annotations:
-          message: 'The node {{ $labels.instance }} has less than 3 peers for more
+          message: 'The node `{{`{{ $labels.instance }}`}}` has less than 3 peers for more
           than 15 minutes'
       - alert: NoIncomingConnection
         expr: increase(substrate_sub_libp2p_incoming_connections_total[20m]) == 0
         labels:
           severity: warning
         annotations:
-          message: 'The node {{ $labels.instance }} has not received any new incoming
+          message: 'The node `{{`{{ $labels.instance }}`}}` has not received any new incoming
           TCP connection in the past 20 minutes. Is it connected to the Internet?'
 
       ##############################################################################
@@ -134,7 +134,7 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'The node {{ $labels.instance }} has more than 10_000 file
+          message: 'The node `{{`{{ $labels.instance }}`}}` has more than 10_000 file
           descriptors allocated for more than 3 minutes'
 
       ##############################################################################
@@ -149,7 +149,7 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'Authority discovery on node {{ $labels.instance }} fails to
+          message: 'Authority discovery on node `{{`{{ $labels.instance }}`}}` fails to
           process more than 50 % of the values found on the DHT for more than 2
           hours.'
 
@@ -159,7 +159,7 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'Channel {{ $labels.entity }} on node {{ $labels.instance }} contains
+          message: 'Channel `{{`{{ $labels.entity }}`}}` on node `{{`{{ $labels.instance }}`}}` contains
           more than 200 items for more than 5 minutes. Node might be frozen.'
 
       - alert: UnboundedChannelVeryLarge
@@ -171,6 +171,6 @@ metadata:
         labels:
           severity: warning
         annotations:
-          message: 'Channel {{ $labels.entity }} on node {{ $labels.instance }} contains more than
+          message: 'Channel `{{`{{ $labels.entity }}`}}` on node `{{`{{ $labels.instance }}`}}` contains more than
           15000 items.'
 {{ end }}          
