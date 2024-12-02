@@ -25,9 +25,9 @@ spec:
     - alert: BlockProductionSlow
       annotations:
         message: 'Best block on instance `{{`{{ $labels.instance }}`}}` increases by
-        less than 1 per minute for more than 10 minutes.'
+        less than 1 per minute for more than 60 minutes.'
       expr: increase(substrate_block_height{status="best"}[1m]) < 1
-      for: 10m
+      for: 60m
       labels:
         severity: critical
 
@@ -45,24 +45,24 @@ spec:
         less than 1 per minute for more than 3 minutes.'
     - alert: BlockFinalizationSlow
       expr: increase(substrate_block_height{status="finalized"}[1m]) < 1
-      for: 10m
+      for: 60m
       labels:
         severity: critical
       annotations:
         message: 'Finalized block on instance `{{`{{ $labels.instance }}`}}` increases by
-        less than 1 per minute for more than 10 minutes.'
+        less than 1 per minute for more than 60 minutes.'
     - alert: BlockFinalizationLaggingBehind
       # Under the assumption of an average block production of 6 seconds,
       # "best" and "finalized" being more than 10 blocks apart would imply
       # more than a 1 minute delay between block production and finalization.
       expr: '(substrate_block_height{status="best"} - ignoring(status)
       substrate_block_height{status="finalized"}) > 10'
-      for: 8m
+      for: 60m
       labels:
         severity: critical
       annotations:
         message: "Block finalization on instance `{{`{{ $labels.instance }}`}}` is behind
-        block production by `{{`{{ $value }}`}}` for more than 8 minutes."
+        block production by `{{`{{ $value }}`}}` for more than 60 minutes."
 
     ##############################################################################
     # Transaction queue
@@ -110,12 +110,12 @@ spec:
         than 3 minutes'
     - alert: NumberOfPeersLow
       expr: substrate_sub_libp2p_peers_count < 3
-      for: 15m
+      for: 60m
       labels:
         severity: critical
       annotations:
         message: 'The node `{{`{{ $labels.instance }}`}}` has less than 3 peers for more
-        than 15 minutes'
+        than 60 minutes'
     - alert: NoIncomingConnection
       expr: increase(substrate_sub_libp2p_incoming_connections_total[20m]) == 0
       labels:
