@@ -56,7 +56,7 @@ spec:
       # "best" and "finalized" being more than 10 blocks apart would imply
       # more than a 1 minute delay between block production and finalization.
       expr: '(substrate_block_height{status="best"} - ignoring(status)
-      substrate_block_height{status="finalized"}) > 10'
+      substrate_block_height{status="finalized"}) > 30'
       for: 60m
       labels:
         severity: critical
